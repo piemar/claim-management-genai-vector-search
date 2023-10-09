@@ -26,7 +26,7 @@ python3.11 app.py --path images
 ```
 
 ### Create Atlas Search Index
-Create Atlas Search index, on database starwars and collection characters using the JSON config and lappy below config
+Create Atlas Search index, on database insurance_company and collection images using the JSON config and lappy below config
 ```json
 {
     "mappings": {
@@ -37,7 +37,7 @@ Create Atlas Search index, on database starwars and collection characters using 
                 "similarity": "euclidean",
                 "type": "knnVector"
             },
-            "textEncodings": {
+            "captionEncodings": {
                 "dimensions": 128,
                 "similarity": "euclidean",
                 "type": "knnVector"
@@ -47,13 +47,19 @@ Create Atlas Search index, on database starwars and collection characters using 
 }
 ```
 
+### Set up and start the Beckend 
 
+Navigate to the frontend directory and install the required npm packages:
+
+```sh
+python3.11 app.py --server 
+```
 ### Set up and start the Frontend 
 
 Navigate to the frontend directory and install the required npm packages:
 
 ```sh
-cd starwars-frontend
+cd claim-management-frontend
 npm install
 npm start
 ```
@@ -63,6 +69,6 @@ The React application should now be running on [http://localhost:3000](http://lo
 ### Using the Application
 
 1. Open your web browser and navigate to [http://localhost:3000](http://localhost:3000).
-2. Click the choose file button to select a selfie picture to match against Starwars characters
-3. The application will encode the selfie and interact with the backend to retrieve related Star Wars characters.
+2. Click the choose file button to select a picture to upload match against reported claims 
+3. The application will encode the image and interact with the backend to retrieve related similar claims
 
