@@ -1,5 +1,11 @@
 
-# Getting started
+# Car Insurance Claim management 
+The claim adjustment procedure can be lengthy and susceptible to mistakes. A client from the insurance sector recently shared, “Every time an adjuster gets involved, it costs us.” For every claim, adjusters must sift through the client's prior claims and associated guidelines. These records are often dispersed over various systems and formats, complicating the retrieval of pertinent data and delaying the generation of an accurate payment estimate.
+
+Using a vector database, the adjuster can easily request the AI to "display images resembling this collision." The system, powered by Vector Search, then provides photos of vehicular accidents with matching damage patterns from the claims history. This allows the adjuster to swiftly juxtapose the accident photos with the most pertinent ones from the insurer's claim archives.
+
+This application ix trying to showcase the above. STILL WIP
+
 ### Update config.ini file
 Updated URI with your appropriate credentials
 
