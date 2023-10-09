@@ -1,70 +1,62 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Getting started
+### Update config.ini file
+Updated URI with your appropriate credentials
 
-## Available Scripts
+```sh
+[MongoDB]
+URI = mongodb+srv://user:password@<cluster_name>.tcrpd.mongodb.net/?retryWrites=true&w=majority
+DATABASE = insurance_company
+COLLECTION = images
+```
 
-In the project directory, you can run:
+### Encode images and store vectors in MongoDB Atlas
+Will install python requirements and run python application to encode images located in images folder
 
-### `npm start`
+```sh
+pip install git+https://github.com/huggingface/transformers 
+pip install -r req.txt
+python3.11 app.py --path images              
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Create Atlas Search Index
+Create Atlas Search index, on database starwars and collection characters using the JSON config and lappy below config
+```json
+{
+    "mappings": {
+        "dynamic": true,
+        "fields": {
+            "imageEncodings": {
+                "dimensions": 128,
+                "similarity": "euclidean",
+                "type": "knnVector"
+            },
+            "textEncodings": {
+                "dimensions": 128,
+                "similarity": "euclidean",
+                "type": "knnVector"
+            }            
+        }
+    }
+}
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+### Set up and start the Frontend 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Navigate to the frontend directory and install the required npm packages:
 
-### `npm run build`
+```sh
+cd starwars-frontend
+npm install
+npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The React application should now be running on [http://localhost:3000](http://localhost:3000), and the Flask application should be running on [http://localhost:5000](http://localhost:5000).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Using the Application
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Open your web browser and navigate to [http://localhost:3000](http://localhost:3000).
+2. Click the choose file button to select a selfie picture to match against Starwars characters
+3. The application will encode the selfie and interact with the backend to retrieve related Star Wars characters.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
